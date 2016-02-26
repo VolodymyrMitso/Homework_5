@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_size_60dp"
+        android:background="@color/c_actionBarColor"
+
+        android:id="@+id/tb_Toolbar_AM"
+
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <EditText
+        style="@style/stl_editTextStyle"
+
+        android:id="@+id/et_SendTo_AM"
+
+        android:layout_below="@id/tb_Toolbar_AM"
+        android:layout_marginTop="@dimen/d_size_15dp"
+        android:layout_marginLeft="@dimen/d_size_20dp"
+        android:layout_marginStart="@dimen/d_size_20dp"
+        android:layout_marginRight="@dimen/d_size_20dp"
+        android:layout_marginEnd="@dimen/d_size_20dp" />
+
+    <EditText
+        style="@style/stl_editTextStyle"
+
+        android:id="@+id/et_Subject_AM"
+
+        android:layout_below="@id/et_SendTo_AM"
+        android:layout_marginTop="@dimen/d_size_15dp"
+        android:layout_marginLeft="@dimen/d_size_20dp"
+        android:layout_marginStart="@dimen/d_size_20dp"
+        android:layout_marginRight="@dimen/d_size_20dp"
+        android:layout_marginEnd="@dimen/d_size_20dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_size_120dp"
+        android:background="@color/c_textEditColor"
+
+        android:id="@+id/et_EmailText_AM"
+        android:hint="@string/s_emailText"
+        android:gravity="top|start"
+        android:paddingTop="@dimen/d_size_7dp"
+        android:paddingLeft="@dimen/d_size_10dp"
+        android:paddingStart="@dimen/d_size_10dp"
+        android:paddingRight="@dimen/d_size_10dp"
+        android:paddingEnd="@dimen/d_size_10dp"
+
+        android:layout_below="@id/et_Subject_AM"
+        android:layout_marginTop="@dimen/d_size_15dp"
+        android:layout_marginLeft="@dimen/d_size_20dp"
+        android:layout_marginStart="@dimen/d_size_20dp"
+        android:layout_marginRight="@dimen/d_size_20dp"
+        android:layout_marginEnd="@dimen/d_size_20dp" />
+
+    <Space
+        android:layout_width="@dimen/d_size_20dp"
+        android:layout_height="@dimen/d_size_50dp"
+
+        android:id="@+id/v_space_AM"
+
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/et_EmailText_AM"
+        android:layout_marginTop="@dimen/d_size_15dp" />
+
+    <Button
+        style="@style/stl_buttonStyle"
+
+        android:id="@+id/btn_Send_AM"
+        android:text="@string/s_Send"
+
+        android:layout_alignTop="@+id/v_space_AM"
+        android:layout_alignLeft="@+id/et_EmailText_AM"
+        android:layout_alignStart="@+id/et_EmailText_AM"
+        android:layout_toLeftOf="@+id/v_space_AM"
+        android:layout_toStartOf="@+id/v_space_AM" />
+
+    <Button
+        style="@style/stl_buttonStyle"
+
+        android:id="@+id/btn_Call_AM"
+        android:text="@string/s_Call"
+
+        android:layout_alignTop="@+id/v_space_AM"
+        android:layout_toRightOf="@+id/v_space_AM"
+        android:layout_toEndOf="@+id/v_space_AM"
+        android:layout_alignRight="@+id/et_EmailText_AM"
+        android:layout_alignEnd="@+id/et_EmailText_AM" />
+
+</RelativeLayout>

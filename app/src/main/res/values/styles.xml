@@ -1,0 +1,25 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/c_statusBarColor</item>
+        <item name="android:colorBackground">@color/c_backgroundColor</item>
+    </style>
+
+    <style name="stl_buttonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/d_size_50dp</item>
+        <item name="android:background">@color/c_buttonColor</item>
+
+        <item name="android:textSize">@dimen/d_textSize_20sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:paddingLeft">@dimen/d_size_10dp</item>
+    </style>
+    
+    <style name="stl_editTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/d_size_40dp</item>
+        <item name="android:background">@color/c_textEditColor</item>
+    </style>
+
+</resources>
