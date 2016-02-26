@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Homework_5</string>
 
-    <string name="s_emailText">Email Text</string>
+    <string name="s_messageText">Message text</string>
     <string name="s_Send">Send</string>
     <string name="s_Call">Call</string>
 </resources>

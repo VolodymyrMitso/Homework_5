@@ -20,7 +20,7 @@
     <EditText
         style="@style/stl_editTextStyle"
 
-        android:id="@+id/et_SendTo_AM"
+        android:id="@+id/et_To_AM"
 
         android:layout_below="@id/tb_Toolbar_AM"
         android:layout_marginTop="@dimen/d_size_15dp"
@@ -34,7 +34,7 @@
 
         android:id="@+id/et_Subject_AM"
 
-        android:layout_below="@id/et_SendTo_AM"
+        android:layout_below="@id/et_To_AM"
         android:layout_marginTop="@dimen/d_size_15dp"
         android:layout_marginLeft="@dimen/d_size_20dp"
         android:layout_marginStart="@dimen/d_size_20dp"
@@ -46,8 +46,8 @@
         android:layout_height="@dimen/d_size_120dp"
         android:background="@color/c_textEditColor"
 
-        android:id="@+id/et_EmailText_AM"
-        android:hint="@string/s_emailText"
+        android:id="@+id/et_MessageText_AM"
+        android:hint="@string/s_messageText"
         android:gravity="top|start"
         android:paddingTop="@dimen/d_size_7dp"
         android:paddingLeft="@dimen/d_size_10dp"
@@ -69,7 +69,7 @@
         android:id="@+id/v_space_AM"
 
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/et_EmailText_AM"
+        android:layout_below="@+id/et_MessageText_AM"
         android:layout_marginTop="@dimen/d_size_15dp" />
 
     <Button
@@ -79,8 +79,8 @@
         android:text="@string/s_Send"
 
         android:layout_alignTop="@+id/v_space_AM"
-        android:layout_alignLeft="@+id/et_EmailText_AM"
-        android:layout_alignStart="@+id/et_EmailText_AM"
+        android:layout_alignLeft="@+id/et_MessageText_AM"
+        android:layout_alignStart="@+id/et_MessageText_AM"
         android:layout_toLeftOf="@+id/v_space_AM"
         android:layout_toStartOf="@+id/v_space_AM" />
 
@@ -93,7 +93,7 @@
         android:layout_alignTop="@+id/v_space_AM"
         android:layout_toRightOf="@+id/v_space_AM"
         android:layout_toEndOf="@+id/v_space_AM"
-        android:layout_alignRight="@+id/et_EmailText_AM"
-        android:layout_alignEnd="@+id/et_EmailText_AM" />
+        android:layout_alignRight="@+id/et_MessageText_AM"
+        android:layout_alignEnd="@+id/et_MessageText_AM" />
 
 </RelativeLayout>
