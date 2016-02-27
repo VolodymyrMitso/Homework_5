@@ -4,4 +4,8 @@
     <string name="s_messageText">Message text</string>
     <string name="s_Send">Send</string>
     <string name="s_Call">Call</string>
+
+    <string name="s_dialog">want to try again?</string>
+    <string name="s_deny">yes</string>
+    <string name="s_allow">no</string>
 </resources>

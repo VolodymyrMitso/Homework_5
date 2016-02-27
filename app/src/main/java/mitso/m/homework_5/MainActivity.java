@@ -1,13 +1,21 @@
 package mitso.m.homework_5;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,17 +59,67 @@ public class MainActivity extends AppCompatActivity {
         mButton_Call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent call = new Intent(Intent.ACTION_CALL);
-                call.setData(Uri.parse(Constants.TEL));
-                if (checkWriteExternalPermission())
+                if (Build.VERSION.SDK_INT == 23) {
+                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+
+                        if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.CALL_PHONE)) {
+                            showDialog(1);
+                        } else {
+                            ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.CALL_PHONE}, Constants.PERMISSION_REQUEST_CALL_PHONE);
+                        }
+                    } else {
+                        Intent call = new Intent(Intent.ACTION_CALL);
+                        call.setData(Uri.parse(Constants.TEL));
+                        startActivity(call);
+                    }
+                } else {
+                    Intent call = new Intent(Intent.ACTION_CALL);
+                    call.setData(Uri.parse(Constants.TEL));
                     startActivity(call);
+                }
             }
         });
     }
 
-    private boolean checkWriteExternalPermission() {
-        String permission = "android.permission.CALL_PHONE";
-        int res = getApplicationContext().checkCallingOrSelfPermission(permission);
-        return (res == PackageManager.PERMISSION_GRANTED);
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case Constants.PERMISSION_REQUEST_CALL_PHONE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    try {
+                        Intent call = new Intent(Intent.ACTION_CALL);
+                        call.setData(Uri.parse(Constants.TEL));
+                        startActivity(call);
+                    } catch (SecurityException e) {
+                    }
+                } else {
+                    Toast.makeText(MainActivity.this, "DENIED", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
     }
+
+    protected Dialog onCreateDialog(int id) {
+        if (id == Constants.DIALOG) {
+            AlertDialog.Builder adb = new AlertDialog.Builder(this);
+            adb.setMessage(Constants.DIALOG_MESSAGE);
+            adb.setPositiveButton(Constants.DIALOG_POSITIVE, myClickListener);
+            adb.setNegativeButton(Constants.DIALOG_NEGATIVE, myClickListener);
+            return adb.create();
+        }
+        return super.onCreateDialog(id);
+    }
+
+    private DialogInterface.OnClickListener myClickListener = new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+                case Dialog.BUTTON_POSITIVE:
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.CALL_PHONE}, Constants.PERMISSION_REQUEST_CALL_PHONE);
+                    break;
+                case Dialog.BUTTON_NEGATIVE:
+                    Toast.makeText(MainActivity.this, "DENIED", Toast.LENGTH_LONG).show();
+                    break;
+            }
+        }
+    };
 }
