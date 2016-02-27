@@ -13,15 +13,6 @@ public class TextDrawable extends Drawable {
     private final String text;
     private final Paint paint;
 
-    public TextDrawable(String text) {
-        this.text = text;
-        this.paint = new Paint();
-        paint.setColor(Color.BLACK);
-        paint.setTextSize(55);
-        paint.setAntiAlias(true);
-        paint.setTextAlign(Paint.Align.LEFT);
-    }
-
     @Override
     public void draw(Canvas canvas) {
         canvas.drawText(text, 30, 20, paint);
@@ -40,6 +31,15 @@ public class TextDrawable extends Drawable {
     @Override
     public int getOpacity() {
         return PixelFormat.TRANSLUCENT;
+    }
+
+    private TextDrawable(String text) {
+        this.text = text;
+        this.paint = new Paint();
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(55);
+        paint.setAntiAlias(true);
+        paint.setTextAlign(Paint.Align.LEFT);
     }
 
     public static void drawStringInEditText(EditText editText, String string, int padding) {

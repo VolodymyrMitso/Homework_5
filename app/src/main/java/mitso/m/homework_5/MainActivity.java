@@ -41,17 +41,22 @@ public class MainActivity extends AppCompatActivity {
         mButton_Send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String To = mEditText_To.getText().toString();
+                String to = mEditText_To.getText().toString();
                 String subject = mEditText_Subject.getText().toString();
                 String messageText = mEditText_MessageText.getText().toString();
 
-                Intent email = new Intent(Intent.ACTION_SEND);
-                email.putExtra(Intent.EXTRA_EMAIL, new String[]{To});
-                email.putExtra(Intent.EXTRA_SUBJECT, subject);
-                email.putExtra(Intent.EXTRA_TEXT, messageText);
-                email.setType("message/rfc822");
+                if (MainSupport.emptyFieldsCheck(MainActivity.this, to, subject, messageText)) {
+                    if (MainSupport.emailAddressCheck(MainActivity.this, to)) {
 
-                startActivity(Intent.createChooser(email, "Choose an Email client:"));
+                        Intent email = new Intent(Intent.ACTION_SEND);
+                        email.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
+                        email.putExtra(Intent.EXTRA_SUBJECT, subject);
+                        email.putExtra(Intent.EXTRA_TEXT, messageText);
+                        email.setType("message/rfc822");
+
+                        startActivity(Intent.createChooser(email, "Choose an Email client:"));
+                    }
+                }
             }
         });
 
@@ -60,12 +65,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT == 23) {
-                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(MainActivity.this,
+                            Manifest.permission.CALL_PHONE)
+                            != PackageManager.PERMISSION_GRANTED) {
 
-                        if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.CALL_PHONE)) {
+                        if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
+                                Manifest.permission.CALL_PHONE)) {
                             showDialog(1);
+
                         } else {
-                            ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.CALL_PHONE}, Constants.PERMISSION_REQUEST_CALL_PHONE);
+                            ActivityCompat.requestPermissions(MainActivity.this,
+                                    new String[] {Manifest.permission.CALL_PHONE},
+                                    Constants.PERMISSION_REQUEST_CALL_PHONE);
                         }
                     } else {
                         Intent call = new Intent(Intent.ACTION_CALL);
